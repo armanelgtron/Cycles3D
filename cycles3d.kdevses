@@ -1,0 +1,10 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE KDevPrjSession>
+<KDevPrjSession>
+<LastCompileConfig>(Default)</LastCompileConfig>
+ <Mainframe MaximizeMode="0" />
+ <DocsAndViews NumberOfDocuments="2" >
+<Doc0 CursorPosLine="546" Type="KWriteDoc" NumberOfViews="1" CursorPosCol="42" FileName="/root/cycles3d/cycles3d/gns/gnsthreads.cpp" >
+<View0 Top="25" Width="667" Attach="1" Height="363" Left="3" Focus="1" Type="KWriteView" MinMaxMode="0" />  </Doc0>
+  <Doc1 CursorPosLine="73" Type="KWriteDoc" NumberOfViews="1" CursorPosCol="29" FileName="/root/cycles3d/cycles3d/gns/gns.h" >
+<View0 Top="51" Width="667" Attach="1" Height="363" Left="127" Focus="0" Type="KWriteView" MinMaxMode="0" />  </Doc1> </DocsAndViews></KDevPrjSession>

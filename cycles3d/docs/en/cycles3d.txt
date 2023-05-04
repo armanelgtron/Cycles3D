@@ -1,0 +1,375 @@
+
+
+				C Y C L E S   3 D  
+
+				   V.1.9 BETA
+
+
+				  By Chris Haag
+
+
+====================================================================================
+"Cycles3D" is a package designed and programmed in majority by
+Chris Haag. "Cycles3D" is based on a sequence from the movie "Tron," and
+uses sounds and images inspired by or appearing in the movie. The movie
+and name "Tron" is copyright by Disney Studios and the Walt Disney Company.
+Chris Haag is not affiliated in any way with Disney Studios or the Walt Disney
+Company. The usage of those sounds and images and the development of "Cycles3D"
+was not and is not authorized by Disney Studios or the Walt Disney Company.
+However, the content of any copy of "Cycles3d" may be freely replaced or
+manipulated by the owner.
+
+    This program is free software; you can redistribute it and/or modify  
+    it under the terms of the GNU General Public License as published by  
+    the Free Software Foundation; either version 2 of the License, or     
+    (at your option) any later version.                                                                                                             
+
+Chris Haag will not be responsible if your computer crashes or does any nasty
+stuff. Cycles3D works stable for him and every computer he has tested on.
+Play this at your own risk!
+====================================================================================
+
+v1.9 New Features
+----
+Linux port
+
+v1.7.5 New Features
+------------
+Enhanced game-search implementation
+
+v1.7.4 New Features
+------------
+Fixed flickering, crash on startup and other bugs
+Fixed light wall disorientation in Internet games
+Fixed Internet dedicated server issues
+New menu interface
+GNS game-searching technology that automatically searches
+	for internet for games when you	run the program
+	by default
+Finds games on a LAN when you run the program by default
+UDP prediction layer for smoother internet games
+LAN dedicated server
+New cycle model
+New recognizer rendering
+
+
+
+v1.5.3 New Features
+------------
+Computer players
+Round-by-round game playing
+Ability to join games in progress
+Dedicated server mode
+Dynamic Real-Time Rankings HTML generation
+Explosion fragments
+Old bug fixes
+New bugs
+
+====================================================================================
+
+Credits
+-------
+Programming & Design..................Chris Haag
+
+Polygon structure optimization code...Francine Evans
+JPEG loader source....................Thomas G. Lane (JPEGLib 5.0) 
+Special thanks........................EFNet #opengl for
+                                      their help with some
+                                      tough questions (including
+                                      phatmatt and f00Dave)
+
+LAN Beta Testers......................Mark Franklin
+                                      Richard Johnson
+                                      Michael Welch
+                                      Bankim Charegaonkar
+                                      Tim Gemperline
+                                      Ibrahim Cisse
+
+Internet Beta Testers.................Tom Powers
+				      Johnny Ernest
+					* Also helped w/ OpenGL code
+				      Craig Aker
+					
+
+
+alpha.3df.............................www.voodooextreme.com
+boom.wav..............................From the movie
+boom2.wav.............................From the movie
+cyc4.wav..............................From the movie
+dserver.3df...........................Chris Haag
+floor.3df.............................Chris Haag
+kaboom.3df............................Chris Haag
+langame.3df...........................Chris Haag
+lanserver.3df.........................Chris Haag
+mouse.3df.............................Chris Haag
+mouse2.3df............................Chris Haag
+Rcognzer.wav..........................Nick Coletta
+recog.wrl.............................David A. Polston
+setup.exe.............................Chris Haag
+teampeg.3df...........................Chris Haag
+tron2.wrl.............................Brad Bellamo and Chris Haag
+turn2.wav.............................From the movie
+wall4.3df.............................Chris Haag
+
+
+A very special thanks to the University of Dayton networking
+department and administrators for letting me test on their computers
+in past versions of Cycles3D.
+
+
+Game start up
+-------------
+When entering a game, a menu screen will appear. On the top are several words
+that represent different tabs of the menu. You have the following options:
+
+File
+	One Player vs x CPU: Begins a human vs. CPU game. The CPU's will be randomly
+			colored.
+	Help: A brief overview of how to navigate through the Cycles3D menu will appear.
+	Game Tips: Instructions on how to play the game
+	Exit: (you should know this one)
+
+
+Internet Game
+	Host game: Allows you to be the server and let other people connect to you
+			to play over the internet
+	Unhost game: Kicks everyone out and removes your hosting status over the
+			internet
+	Dedicated server: Lets you host a dedicated server on the Internet. WARNING:
+			THIS WILL SLOW OTHER ACTIVITIES YOU DO ON YOUR COMPUTER DOWN
+			BECAUSE IT IS CPU INTENSIVE!!
+	Disconnect: Leave an existing internet game
+	Help: A brief overview of the Internet Game tab
+
+
+LAN Game (Local Area Network; your neighborhood in the internet)
+	Host game: Allows you to be the server and let other people connect to you
+			to play on your LAN
+	Unhost game: Kicks everyone out and removes your hosting status on the LAN
+	Dedicated server: Lets you host a dedicated server on your LAN. WARNING:
+			THIS WILL SLOW OTHER ACTIVITIES YOU DO ON YOUR COMPUTER DOWN
+			BECAUSE IT IS CPU INTENSIVE!!
+	Disconnect: Leave an existing LAN game	
+	Help: A brief overview of the LAN Game tab
+
+GameFinder:
+	By default, a listing of local and internet games will be generated here. You
+	may double-click on any game to join, or use the arrow keys and scrollbar on
+	the right to navigate through the list. If you are behind a proxy, you will
+	not be able to find Internet games directly, but you may visit
+	http://www.coders.net/cgi_bin/cyc3dlst.php3 to obtain an online listing.
+
+
+Options - Takes you to the options menu
+
+PLAY - Click here to begin playing if you are hosting a LAN or Internet game,
+or just want to get started without delay.
+
+
+					GAME PLAY
+==========================================================================================
+The objective of the game is to make other players run into the wall generated by your
+cycle. The controls are:
+
+F1 - Show controls
+F5 - Change view
+Left/Right - Turns 90 degrees left and right
+Up - Accelerate
+Down - Decelerate
+T - Talk
+
+
+				  PLAYING INTERNET GAMES
+==========================================================================================
+1. Searching for Internet Games
+
+Cycles3D will, by default, immediately try to connect to a game-finding server to see who is hosting
+games when you open the program. To see the list, click on the GameFinder tab. You may have to wait
+a few seconds for the results, first. Icons on the left will identify what kind of game you found:
+
+No icon - Standard Internet game
+Gray box - Dedicated Internet server
+Three tiny boxes - LAN (local) game
+Two tiny boxes and a gray box on top - Dedicated LAN (local) game
+
+To join a game, simply double-click on the name, or use the arrow keys and space bar or enter key
+to navigate.
+
+Also notice the "Search for games on startup" and "Private hosting" option in SETUP.EXE.
+These will let you choose if Cycles3D searches for games, and if you want your Internet
+game to be known to the whole internet.
+
+
+2. Hosting a game
+
+	To host a game, click on the "Host game" button, or type in "/host" in the
+	Internet tab. If it works, it will say "*** Now hosting internet game." The
+	name of your game can be set in SETUP.EXE or the options tab under "Game Title."
+	Game names may only have alphanumeric or underscore "_" characters.
+
+
+3. Joining a game
+
+	To join an Internet game, you can do one of two things:
+		A. Go to the GameFinder tab and double-click on the name.
+
+		B. Type in "/connect " followed by the IP address of the person
+		hosting a game. For example: /connect 122.124.77.4.
+
+4. Leaving a game
+
+	Type in /disconnect, or select "Disconnect" to leave a game.
+
+5. Getting into the game
+
+	You may only start a game if you are hosting it. To start, just click on
+	PLAY! or type in /play when everyone is in.
+
+
+					DEDICATED SERVER
+==========================================================================================
+1. Starting up
+
+	Cycles3D now has the ability for players to host dedicated servers. Select
+	"Dedicated Server" from the Internet or LAN tabs to start it up, depending on
+	what kind of dedicated server you want (Internet or local).
+
+	In a dedicated server, the graphics are closed and a dialog appears. You have
+	the ability to talk to players by typing in text in the white edit box and
+	clicking on the "Say" button. They, in turn, have the ability to talk to you.
+	The game-find server will also be notified your dedicated server is up.
+
+2. Players
+
+	To specify how many computer players and maximum players altogether you
+	want to allow on your server, go in the Options tab and change the numbers
+	on the bottom of the screen.
+
+	**There will always be one extra computer player in addition to the number
+	you specify to keep the server alive at all times.
+
+3. Exiting
+
+	When you click on the exit button, you will close down Cycles3D and remove
+	all players in the game.
+
+4. Server logging
+
+	The dedicated server will produce and write to a log file specified by the
+	setup executable. If you close the server and open it again, the file will
+	be appended to, not overwritten. This file is also accessed by c3dhtml.dll.
+	This DLL is used to generate a rankings HTML given a template HTML document.
+	
+
+
+
+					   PLAYING LAN GAMES
+==========================================================================================
+1. Searching for LAN games
+
+Cycles3D will, by default, immediately try to connect to a game-finding server to see who is hosting
+games when you open the program. To see the list, click on the GameFinder tab. You may have to wait
+a few seconds for the results, first. Icons on the left will identify what kind of game you found:
+
+No icon - Standard Internet game
+Gray box - Dedicated Internet server
+Three tiny boxes - LAN (local) game
+Two tiny boxes and a gray box on top - Dedicated LAN (local) game
+
+To join a game, simply double-click on the name, or use the arrow keys and space bar or enter key
+to navigate.
+
+Also notice the "Search for games on startup" and "Private hosting" option in SETUP.EXE.
+These will let you choose if Cycles3D searches for games, and if you want your Internet
+game to be known to the whole internet.
+
+
+2. Hosting a game
+
+	Same interface as Internet games...only it should say "*** Now hosting LAN game."
+	You may not host an Internet and LAN game at the same time.
+
+3. Joining a game
+
+	The only way you can join a game is through the GsmeFinder tab.
+
+4. Leaving a game
+
+	Type in /disconnect, or select "Disconnect" to leave a game.
+
+5. Getting into the game
+
+	You may only start a game if you are hosting it. To start, just click on
+	PLAY! or type in /play when everyone is in.
+
+
+
+						OPTIONS
+==========================================================================================
+1. Overview
+
+	Click on the options menu to change your settings for the game. You may change
+	your color and visual settings regardless if you have already joined a game.
+	However, if you are hosting a game you may -=NOT=- change the max number of players
+	or computer players -=WHILE=- hosting!!
+
+	To the left are three scrollbars; red green and blue. Drag those left and right
+	to change the color of your light cycle. If you are not using 2D-Only mode, you
+	will see your cycle. Otherwise, a square of the color you will represent.
+
+	To change your user name, click on the "Your Name" text box and type in your name. It
+	may be up to 16 characters long.
+
+	To change the name of the game you are hosting, click on "Game Name". You may only
+	use alphanumeric or underscore "_" characters.
+
+	To change the maximum number of players in your game, click on "Max Players."
+	You may have between 2 and 6 players in your game.
+
+	A set of option buttons appears below the text boxes to let you change visual
+	options in your game:
+		Show radar - Shows the radar in the corner of the screen
+		Recognizers - Recognizers fly around aimlessly above the game grid
+		Show scores - Shows everyone's score
+		Shadows - All the bikes and recognizer have shadows
+		2D Only - Plays a special 2D-Only mode (for those of you without
+			fancy hardware acceleration)
+		Sound - Toggle all sound
+		Textures - Enable/disable textures
+
+2. Game Type
+
+	There is currently only one game type: Last Survivor. You can't change it.
+
+3. Teams
+
+	On the right is a chart	with rows and columns. Each column represents a team number,
+	and each row represents	a player. By default, each player is on his own team. To join
+	another team, use the left and right arrow keys. Then, your color in chat and in the
+	game will change to that team.
+
+						CONTROLS
+==========================================================================================
+Up arrow - Speed up
+Down arrow - Slow down
+Left arrow - Turn left
+Right arrow - Turn right
+
+F1 - Help
+F5 - Toggle views (First person/Third person/Skycam)
+F8 - Screen snapshot
+
+Mouse - Turns your head in the first two views
+Left mouse button - Calibrate your view to face forward
+
+Press ESC to exit at any time.
+
+
+
+
+Questions, comments?
+--------------------
+Cycles3D Website: http://www.cycles3d.com
+Sourceforge website: http://www.sourceforge.net/projects/cycles3d
+
+E-Mail: dragonslayer_developer@hotmail.com

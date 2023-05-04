@@ -1,0 +1,142 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Cycles3D 1.9 Technical Development Notes</title>
+</head>
+
+<body>
+
+<h1 align="center">Cycles3D 1.9 Technical Development Notes</h1>
+
+<p align="center"><b>November 2, 2002</b></p>
+<p align="center">By Chris Haag</p>
+<p align="center"><br>
+</p>
+<p align="center"><i>&quot;I ought to know my way around the Light Cycle
+routine; I wrote the program for it&quot; -- Flynn from the movie <b> Tron</b></i></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><b>This document is intended to help developers get to know their
+way around the code when just looking at it isn't enough.</b></p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<h2 align="left">Programming style disclaimer</h2>
+<p align="left">The code has been evolving since 1998. Its original purpose was
+to be a collection of what I learned about 3D game development in the form of a
+Light Cycle simulation (for its ease of concept and implementation). I originally had no interest
+in multi-platform development, network development, or clean, robust, and modular code. As a result,
+I had to clean up the whole program several times over before it was as
+maintainable as it is now. I still wouldn't call this the best code to model
+development from, because you will see a mix of good clean code (Particularly in
+the GNS source) and not-so-clean code where I even have comments that question my
+original methodologies. In short, if you are pleased with how the code looks,
+great. But if you are shocked at how bad it's written, rest assured that
+programs I write now are much cleaner, modular, robust, and multi-platform
+ready.</p>
+<p align="left">&nbsp;</p>
+<h2>Things to know before looking at the code</h2>
+<h3>Libraries</h3>
+<ul>
+  <li>The code uses GLUT for OpenGL support and the main program loop.</li>
+  <li>SDL is used strictly for audio support.</li>
+  <li>The C++ GNS (Game finding) source&nbsp; is included in the code, and also
+    has it's own project on SourceForge.net. The GNS code accesses my Cycles3D
+    server. I am the sole maintainer of the GNS server, so if you need to make
+    drastic changes to the GNS code, you may have to talk to me about getting
+    your own GNS server-side script.</li>
+</ul>
+<h3>Main program logic</h3>
+<ul>
+  <li>One of two functions will be called in the main program loop at any given
+    time. One is used to handle main menu functionality. The other handles game
+    functionality. They are both defined in main.cpp.</li>
+  <li>The network code is <b>single-threaded</b>. Everything is done
+    asynchronously in the main
+    loop, with the exception of GNS code.</li>
+  <li>There is a dedicated server mode, and it uses the same game loop that is
+    used when you are playing a single-player or multi-player game.</li>
+</ul>
+<h3>Network code</h3>
+<ul>
+  <li>Internet games use the CNetworkBase class, which uses TCP sockets.</li>
+  <li>LAN games use the CUDPClient class, which uses UDP sockets and
+    multicasting.</li>
+  <li>Internet games additionally use two UDP ports: One that handles <i>UDP
+    Prediction </i>(The concept is explained in code), the second is for UDP-level
+    pings (CPingClient). LAN games do not use these.</li>
+  <li>All ports are configurable.</li>
+</ul>
+<h3>Video code</h3>
+<ul>
+  <li>Only OpenGL is used, but in the past, the game used to support Glide and
+    DirectX.</li>
+  <li>Most graphical related function calls &quot;encapsulated&quot; in GFX_
+    prefixed names, so porting to other graphical libaries won't be as
+    difficult.</li>
+  <li>The code includes a primitive VRML loader that I wrote. Models are loaded
+    in, and then put in OpenGL pre-compiled lists.</li>
+</ul>
+<h3>Game configuration</h3>
+<ul>
+  <li>The configuration code is built to be generic.</li>
+  <li>Unlike previous versions of Cycles3D, there is no companion setup.exe or
+    c3dsetup.exe.</li>
+  <li>All settings are in a text file. If the text file does not exists, the
+    default configuration values are assigned.</li>
+</ul>
+<h3>Compiler</h3>
+<ul>
+  <li>I use the WIN32 and __GNUC__ pre-compiler defines to determine what OS I'm
+    compiling on.</li>
+  <li>There are a handful of warnings you will get with GCC; mainly about unused
+    parameters or typecasting.</li>
+  <li>The code was compiled on the Windows platform with Microsoft Visual Studio
+    6.0, and with KDevelop on Redhat Linux 8.0. I guess I'm just a fan of
+    graphical development applications.</li>
+  <li>This is my first Linux game, and my first open-source game protected by
+    GPL.</li>
+</ul>
+
+<h3>&nbsp;</h3>
+<h3>&nbsp;</h3>
+<h3>SourceForge</h3>
+<p>The latest Cycles3D code will be kept on SourceForge. Feel free to visit <a href="http://www.sourceforge.net/projects/cycles3d">http://www.sourceforge.net/projects/cycles3d</a>
+to get it. I have one rule about the main Cycles3D CVS branch: <u>I will not
+allow any changes that deviate from the simulation in the movie Tron to appear
+in the main branch</u>.</p>
+<h3>&nbsp;</h3>
+<h3>Support</h3>
+<p>You may e-mail me at <a href="mailto:dragonslayer_developer@hotmail.com">dragonslayer_developer@hotmail.com</a>
+if you have questions. I will not hold your hand through how all the code works,
+but I may update this document every so often based on feedback I get. Right
+now, I am devoting my efforts to developing an original, and comparatively much
+much bigger game than Cycles3D on my own right now (it has nothing to do with
+Cycles3D). I don't plan to change any Cycles3D code myself unless an extremely
+critical bug is found.</p>
+<p>&nbsp;</p>
+<h3>Credits</h3>
+<p>Some generous people helped me out along the way. Thanks to Morton Brenna for
+the original DirectX port, and to Jan Fostier for help with the Glide code.
+Ultimately, those engines were phased out, but the credit is still due.
+Additional thanks go to the EFNet #opengl IRC channel for their support on
+random questions I would come up with from time to time, and the Undernet #codehozers
+channel for advice on getting my Linux box running. Thanks go out to Dr. Loomis
+of the University of Dayton CS department for teaching me a few concepts I ended
+up applying in the game (including how the recognizers move). Finally, greets to
+all the beta testers, people who gave suggestions, and all the people who had a
+good time playing Cycles3D.</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left"><i>&quot;All my functions are now yours.....take them!&quot; --
+The MCP from the movie <b> Tron</b></i></p>
+
+</body>
+
+</html>
