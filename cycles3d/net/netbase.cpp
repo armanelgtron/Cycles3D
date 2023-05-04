@@ -498,6 +498,8 @@ ERROR_TYPE CNetworkBase::EchoToPlayers(char* pData, unsigned char flags, int siz
 		return NO_HOST;
 
 	for (i=0; i < m_nClients; i++) {
+		if(i < 0 || i >= m_nClients || !(&m_Client[i])) continue;
+		
 		//////////////////////////////////
 		// Don't send a packet back to the
 		// source
@@ -514,7 +516,7 @@ ERROR_TYPE CNetworkBase::EchoToPlayers(char* pData, unsigned char flags, int siz
 		}
 
 		// Make sure PlayerFromID(m_Client[i].id) is a valid pointer.
-		if (PlayerFromID(m_Client[i].id))
+		if (i >= 0 && i < m_nClients && PlayerFromID(m_Client[i].id))
 		{
 			if ((res=Send(pData, flags, size, m_Client[i].id, src_id, 1 /*true*/, PlayerFromID(m_Client[i].id)->dwIP)) != SUCCESS)
 				return res;
@@ -587,6 +589,7 @@ _CONNECTION* CNetworkBase::ConnectionFromSocket(SOCKET s)
 
 _CONNECTION* CNetworkBase::ConnectionFromID(unsigned long ID)
 {
+	Log("Connection from ID");
 	for (int i=0; i < m_nClients; i++) {
 		if (m_Client[i].id == ID)
 			return &m_Client[i];
@@ -642,6 +645,8 @@ ERROR_TYPE CNetworkBase::AcceptSocket(SOCKET s, struct sockaddr_in namesock, _TR
 #endif
 	src_ip = inet_ntoa(namesock.sin_addr);
 
+	printf("Established connection with %s\n",src_ip);
+
 	m_Client[n].id = New_Player_ID();
 	m_Client[n].port = m_Self.port;
 
@@ -665,6 +670,9 @@ ERROR_TYPE CNetworkBase::AcceptSocket(SOCKET s, struct sockaddr_in namesock, _TR
 	m_nClients++;
 	ids[0] = g_player[g_self].id;
 	ids[1] = t->id;
+	
+	printf("Assigning ID of %d\n", t->id);
+	
 	sprintf(out + sizeof(unsigned long)*2, "%s%d", VERSTRING, NETVERSION);
 
 	Send((char*)ids, MSG_GAME_ID, sizeof(unsigned long)*2 + strlen(out+sizeof(unsigned long)*2), t->id);

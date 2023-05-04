@@ -38,6 +38,7 @@ typedef int socklen_t;
 #define closesocket(s) close(s)
 #define min(a,b) ((a < b) ? a : b)
 #endif
+#include <algorithm>
 
 #include "gns.h"
 #include "gnspackets.h"
@@ -76,7 +77,7 @@ int recvmsg(GNS_SOCKET s, char*& szData, int nBytes, int& nAllocatedSize)
 	}
 
 	/* We MUST receive nBytes */
-	while (nBytes && SOCKET_ERROR != (size=recv(s, p, min(nBytes, 2048), 0)))
+	while (nBytes && SOCKET_ERROR != (size=recv(s, p, std::min(nBytes, 2048), 0)))
 	{
 		if (!size) /* The socket may be closed */
 		{

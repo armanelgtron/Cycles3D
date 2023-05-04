@@ -662,7 +662,7 @@ static void Player_Think(int i)
 					continue;
 				}
 
-				dist = (float)min(fabs(z2 - z3), fabs(z2 - z4));
+				dist = (float)fmin(fabs(z2 - z3), fabs(z2 - z4));
 
 				if (z2 > z3) {
 					if (dist < southbound)
@@ -680,7 +680,7 @@ static void Player_Think(int i)
 					continue;
 				}
 
-				dist = (float)min(fabs(x2 - x3), fabs(x2 - x4));
+				dist = (float)fmin(fabs(x2 - x3), fabs(x2 - x4));
 				if (x2 > x3) {
 					if (dist < westbound)
 						westbound = dist;

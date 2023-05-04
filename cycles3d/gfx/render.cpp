@@ -21,8 +21,11 @@
 
 #include "../cycles3d.h"
 #include <math.h>
+#include <algorithm>
 #include <malloc.h>
 #include <memory.h>
+
+#include "core.h"
 
 // Vertices for the playfield
 static GrVertex vFloor[4], vNorthWall[4],
@@ -644,9 +647,9 @@ void Draw_2D_Only_Map()
 			float intensity = (float)sin((double)r) + 1.0f;
 			GFX_Constant_Color(
 				RGB(
-				min(GetRValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255),
-				min(GetGValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255),
-				min(GetBValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255)
+				std::min(GetRValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255.f),
+				std::min(GetGValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255.f),
+				std::min(GetBValue(g_player[ PlayerIndexFromID(g_player[j].team) ].color)*intensity, 255.f)
 				)
 			);
 		}
@@ -866,6 +869,7 @@ void WRLRender(long colormask, _VRML_OBJECT* o)
 	char boTriStrips;
 	int i,j,face = 0;
 
+	if(!o) return;
 	boTriStrips = o->boTriStrips;
 	//GFX_Select_Constant_Triangles();
 	GFX_Select_Gouraud_Triangles();
@@ -960,7 +964,7 @@ void GFX_Render_Options_Bike(void)
 
 	glMatrixMode( GL_PROJECTION ); 
 	glLoadIdentity(); 
-	gluPerspective( 70, (float)(rcView.right - rcView.left) / (float)(rcView.bottom - rcView.top), 10, 10000 );
+	gluPerspective( 70.f, (float)(rcView.right - rcView.left) / (float)(rcView.bottom - rcView.top), 10.f, 10000.f );
 	glMatrixMode(GL_MODELVIEW);
    	glLoadIdentity();
 

@@ -525,7 +525,7 @@ THREAD_RESULT ClientCommThread(void* lpParam)
 {
 	char* pData = new char[12];	/* Recv buffer */
 	int nAllocatedSize = 12;	/* Total size of recv buffer */
-	int s = (int)lpParam;
+	int s = (int)(size_t)lpParam;
 
 	GNS_LogProc("Client connected.");
 

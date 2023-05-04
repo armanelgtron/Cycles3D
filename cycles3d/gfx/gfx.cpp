@@ -21,8 +21,39 @@
 #include "../cycles3d.h"
 #include <stdio.h>
 #include <math.h>
+#include <algorithm>
 #include <malloc.h>
 #include <string.h>
+
+#include <math.h>
+
+// see https://www.khronos.org/opengl/wiki_opengl/index.php?title=GluPerspective_code
+void glhPerspectivef2(float fovyInDegrees, float aspectRatio,
+                      float znear, float zfar)
+{
+	GLfloat ymax, xmax;
+	
+	ymax = znear * tanf(fovyInDegrees * M_PI / 360.0);
+	xmax = ymax * aspectRatio;
+	
+	glFrustum(-xmax, xmax, -ymax, ymax, znear, zfar);
+}
+
+
+#include <glm/gtc/type_ptr.hpp>
+void glmLookAt(GLfloat eyeX, GLfloat eyeY, GLfloat eyeZ,
+               GLfloat lookAtX, GLfloat lookAtY, GLfloat lookAtZ,
+               GLfloat upX, GLfloat upY, GLfloat upZ)
+{
+	glm::mat4 m = glm::lookAt(
+		glm::vec3(eyeX, eyeY, eyeZ),
+		glm::vec3(lookAtX, lookAtY, lookAtZ),
+		glm::vec3(upX, upY, upZ)
+	);
+	
+	glMultMatrixf( glm::value_ptr(m) );
+}
+
 
 // OpenGL texture handles
 GLuint iFloor, iWall, iExplosion, iButton[5], iFont, iMouse, iTeamPeg;
@@ -712,8 +743,8 @@ static char Load16BitTexture(_TEXTURE *txtr, FILE *fp)
 				}
 			}
 		}
-		lxres = max(lxres >> 1, 1);
-		lyres = max(lyres >> 1, 1);
+		lxres = std::max(lxres >> 1, 1);
+		lyres = std::max(lyres >> 1, 1);
 	}
 
 	if(!gfx_LoadMipMapChain(txtr))

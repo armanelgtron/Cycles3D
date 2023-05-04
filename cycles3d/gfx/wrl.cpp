@@ -814,10 +814,10 @@ void WRLReport(_VRML_OBJECT* o)
 	FILE *fp = fopen("out.txt", "wt");
 
 	while (o) {
-		fprintf(fp, "Object #%x\n", (unsigned int)o);
+		fprintf(fp, "Object #%x\n", (unsigned int)(size_t)o);
 		fputs("----------\n", fp);
 		fprintf(fp, "Name: %s\n", o->name);
-		fprintf(fp, "Parent: %x\n", (unsigned int)o->pParent);
+		fprintf(fp, "Parent: %x\n", (unsigned int)(size_t)o->pParent);
 		fprintf(fp, "Vertices: %d\n", o->nVertices);
 		fprintf(fp, "Indices: %d\n", o->nIndices);
 		fprintf(fp, "Tx = %f Ty = %f Tz = %f\n", o->tx, o->ty, o->tz);

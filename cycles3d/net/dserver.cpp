@@ -78,6 +78,10 @@ void* DServer_Input(void*)
 			msg.type = PLAYER_MESSAGE;
 			g_pActiveClient->SendToPlayers((char*)&msg, PLAYER_MESSAGE, sizeof(_PLAYER_MESSAGE));
 		}
+		else
+		{
+			printf("Command not recognized: %s", szConsoleCommand);
+		}
 	}
 	return 0;
 }
@@ -141,19 +145,29 @@ int DServer_Init()
 
 	//////////////////////////////////////////////////
 	// Host the game
-	if (SUCCESS != g_TCPClient.Init(TCP_CallBack))
+	ERROR_TYPE err;
+	if (SUCCESS != (err=g_TCPClient.Init(TCP_CallBack)))
 	{
 		DServer_AddMessage(DSERVER_CHAT_MESSAGE, "Failed to initialize network subsystem");
+		char errstr[256];
+		sprintf(errstr, "Error %d", err);
+		DServer_AddMessage(DSERVER_CHAT_MESSAGE, errstr);
 		return -1;
 	}
-	if (SUCCESS != g_PingClient.Init())
+	if (SUCCESS != (err=g_PingClient.Init()))
 	{
 		DServer_AddMessage(DSERVER_CHAT_MESSAGE, "Failed to initialize ping client");
+		char errstr[256];
+		sprintf(errstr, "Error %d", err);;
+		DServer_AddMessage(DSERVER_CHAT_MESSAGE, errstr);
 		return -1;
 	}
-	if (SUCCESS != g_TCPClient.Host(g_wTCPHostPort))
+	if (SUCCESS != (err=g_TCPClient.Host(g_wTCPHostPort)))
 	{
 		DServer_AddMessage(DSERVER_CHAT_MESSAGE, "Failed to host game");
+		char errstr[256];
+		sprintf(errstr, "Error %d", err);
+		DServer_AddMessage(DSERVER_CHAT_MESSAGE, errstr);
 		return -1;
 	}
 	g_pActiveClient = &g_TCPClient;

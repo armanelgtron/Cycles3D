@@ -22,6 +22,9 @@
 #include "menu.h"
 #include <stdio.h>
 #include <string.h>
+#include <algorithm>
+
+#include "./gfx/core.h"
 
 static int g_curcolor;
 extern Dialogue* pChatList;
@@ -186,7 +189,7 @@ void Draw_Names()
 		GFX_Write_Text((float)rcNames.left + 8, y, fprint);
 
 		// Show the player's lag. Max is 1000ms.
-		GFX_Draw_Box(rcNames.left + 8, (int)y + 18, rcNames.left + 8 + ((120 * min(g_player[i].wLatency, 1000)) / 1000), (int)y + 20);
+		GFX_Draw_Box(rcNames.left + 8, (int)y + 18, rcNames.left + 8 + ((120 * std::min((int)g_player[i].wLatency, 1000)) / 1000), (int)y + 20);
 	}
 }
 

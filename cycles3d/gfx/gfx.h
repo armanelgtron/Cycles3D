@@ -28,6 +28,17 @@
 #include <GL/glut.h>  /* Header File For The GLUT Library */
 #include <GL/gl.h>	/* Header File For The OpenGL32 Library */
 #include <GL/glu.h>	/* Header File For The GLu32 Library */
+#include <glm/glm.hpp>	/* Header File For GLM */
+
+
+#define gluPerspective glhPerspectivef2
+void glhPerspectivef2(float fovyInDegrees, float aspectRatio,
+                      float znear, float zfar);
+
+#define gluLookAt glmLookAt
+void glmLookAt(GLfloat eyeX, GLfloat eyeY, GLfloat eyeZ,
+               GLfloat lookAtX, GLfloat lookAtY, GLfloat lookAtZ,
+               GLfloat upX, GLfloat upY, GLfloat upZ);
 
 #define HARDWARE_ACCELERATION
 

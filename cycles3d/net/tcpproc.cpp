@@ -76,6 +76,7 @@ void TCP_CallBack(_TRANSMISSION* t)
 					if (strcmp(g_player[i].username, pData->username)) {
 						SetMessageColor(pData->color);
 						sprintf(buf, "*** %s is now known as %s", g_player[i].username, pData->username);
+						if(g_boDedicated) DServer_AddMessage(DSERVER_PLAYER_JOINED, buf);
 						Tab_Add_Message(TAB_TCP, buf);
 					}
 					if (g_player[i].team != pData->team) {
@@ -103,6 +104,7 @@ void TCP_CallBack(_TRANSMISSION* t)
 					g_player[g_npyrs-1].team = g_player[g_npyrs-1].id;
 
 					// Get the player ID from the connection
+					if(g_TCPClient.ConnectionFromID(pData->id))
 					{
 						struct sockaddr_in src;
 						socklen_t src_siz;
@@ -559,8 +561,9 @@ void TCP_CallBack(_TRANSMISSION* t)
 				g_TCPClient.SetHostIDLong(plData[0]);
 				g_player[g_self].id = g_player[g_self].team = plData[1];
 				SetMessageColor(0xFFFFFFFF);
-//				sprintf(fprint, "*** Your new ID is %d", g_player[g_self].id);
-//				Tab_Add_Message(TAB_TCP, fprint);
+
+				sprintf(fprint, "*** Your ID is %d", g_player[g_self].id);
+				Tab_Add_Message(TAB_TCP, fprint);
 
 				// NOW we send the server our information
 				g_TCPClient.Send((char*)&g_player[0], PLAYER_SETUP_DATA, sizeof(_PLAYER), plData[0]);
