@@ -52,6 +52,8 @@ unsigned short g_wKeyAcc = GLUT_KEY_UP;
 unsigned short g_wKeySlow = GLUT_KEY_DOWN;
 unsigned short g_wKeyLeft = GLUT_KEY_LEFT;
 unsigned short g_wKeyRight = GLUT_KEY_RIGHT;
+unsigned char g_wChrLeft2 = 'a', g_wChrLeft3 = 0;
+unsigned char g_wChrRight2 = 'd', g_wChrRight3 = 0;
 char g_ModelFilename[32];
 
 // Ports /////////////////////////
@@ -287,6 +289,27 @@ void ReadCFG()
 	else if (!stricmp(szProp, "1024x768")) g_Resolution = r1024x768;
 	else if (!stricmp(szProp, "1280x1024")) g_Resolution = r1280x1024;
 	else g_Resolution = r640x480;
+	
+	szProp = GetProperty("TurnLeftKey");
+	if( szProp ) g_wKeyLeft = szProp;
+	szProp = GetProperty("TurnRightKey");
+	if( szProp ) g_wKeyRight = szProp;
+	if( g_wKeyLeft == g_wKeyRight )
+	{
+		g_wKeyLeft = GLUT_KEY_LEFT;
+		g_wKeyRight = GLUT_KEY_RIGHT;
+	}
+	
+	szProp = GetProperty("TurnLeft1");
+	if( szProp ) g_wChrLeft2 = (unsigned char)atoi(szProp);
+	szProp = GetProperty("TurnRight1");
+	if( szProp ) g_wChrRight2 = (unsigned char)atoi(szProp);
+	
+	szProp = GetProperty("TurnLeft2");
+	if( szProp ) g_wChrLeft3 = (unsigned char)atoi(szProp);
+	szProp = GetProperty("TurnRight2");
+	if( szProp ) g_wChrRight3 = (unsigned char)atoi(szProp);
+	
 }
 
 

@@ -1100,7 +1100,8 @@ void BeginGame(void)
 		g_WinningTeam = -1;
 		g_camera_turn = TURN_NONE;
 		g_camera_angle = 3.14159f / 2.0f;
-		g_view_type = FIRST_PERSON;
+		//g_view_type = FIRST_PERSON;
+		g_view_type = BETTER_THIRD_PERSON;
 
 		g_player[g_self].IsPlaying = PS_PLAYING;
 		for (i=1; i < g_npyrs; i++) {

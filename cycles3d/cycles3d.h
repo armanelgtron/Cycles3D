@@ -105,7 +105,7 @@ but I'll leave it alone) */
 
 /* Enumerations for cameras and views */
 typedef enum { TURN_LEFT, TURN_RIGHT, TURN_BACK, TURN_NONE } CAMERA_TURN;
-typedef enum { FIRST_PERSON, THIRD_PERSON, OTHER_THIRD_PERSON } VIEW_TYPE;
+typedef enum { FIRST_PERSON, THIRD_PERSON, OTHER_THIRD_PERSON, BETTER_THIRD_PERSON } VIEW_TYPE;
 typedef void(*PERFORM_PROC)();
 
 /* Support for threads */

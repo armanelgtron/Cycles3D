@@ -474,6 +474,8 @@ void Player_Add_Path_Node(int actionid, int p)
 
 void Player_Control(int i, int key)
 {
+	if( !g_player[i].pAnchor || g_player[i].vel == 0 ) return;
+	
 	// Change cycle direction
 	switch (key) {
 	case 0:

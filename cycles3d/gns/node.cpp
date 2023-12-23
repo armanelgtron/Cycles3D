@@ -39,7 +39,7 @@ CNodeProperty::~CNodeProperty()
 
 {
 	if (m_pProp)
-		delete (char*)m_pProp;
+		delete[] (char*)m_pProp;
 }
 
 CNode::CNode()

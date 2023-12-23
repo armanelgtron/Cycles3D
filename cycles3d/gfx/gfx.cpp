@@ -1143,6 +1143,9 @@ void GFX_BuildGameCamera()
 	int w = g_WindowWidth/2;
 	int h = g_WindowHeight/2;
 
+	float time = glutGet(GLUT_ELAPSED_TIME);
+	static float lastTime = time;
+
 	if (g_player[g_self].vel == 0 &&
 		g_player[g_self].pAnchor == 0)
 		Demo_Camera_Sequence();
@@ -1219,5 +1222,39 @@ void GFX_BuildGameCamera()
 			g_player[g_self].z + 1024,
 			0, 1, 0);
 		break;
+	
+	case BETTER_THIRD_PERSON:
+		switch (g_player[g_self].direction) {
+		case DIR_WEST: angle = 0.0; break;
+		case DIR_SOUTH: angle = 3.14159f/2.0f; break;
+		case DIR_EAST: angle = 3.14159f; break;
+		case DIR_NORTH: angle = 3.14159f*3.0f/2.0f; break;
+		}
+		
+		float test = angle - ang;
+		while(test < -M_PI) test += M_PI+M_PI;
+		while(test > M_PI) test -= M_PI+M_PI;
+		
+		ang += test*4*((time-lastTime)/1000.f);
+		
+		float ag = ( g_WindowWidth - g_MouseX );
+		
+		cam_center_x = g_player[g_self].x + cos(ang) * (300.0f+ag);
+		if (g_boReverseMouseYAxis)
+			cam_center_y = 400 + ag + (float)(400.0 * (h - (float)g_MouseY)/h);
+		else
+			cam_center_y = 400 + ag + (float)(400.0 * ((float)g_MouseY - h)/h);
+		cam_center_z = g_player[g_self].z + sin(ang) * (300.0f+ag);
+
+		Math_BuildCameraMatrix(
+			cam_center_x, cam_center_y, cam_center_z, //150
+			g_player[g_self].x,
+			12.0f + 40,
+			g_player[g_self].z,
+			0, 1, 0);
+		
+		break;
 	}
+	
+	lastTime = glutGet(GLUT_ELAPSED_TIME);
 }

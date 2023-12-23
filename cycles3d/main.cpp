@@ -150,6 +150,7 @@ void OnMouseMotion(int x, int y)
 	}
 }
 
+extern unsigned char g_wChrLeft2, g_wChrRight2, g_wChrLeft3, g_wChrRight3;
 void OnKeyboard(unsigned char key, int /*x*/, int /*y*/)
 {
 	if (AnimateProc == AnimateMenu) /* If you're in the main menu... */
@@ -175,6 +176,20 @@ void OnKeyboard(unsigned char key, int /*x*/, int /*y*/)
 			}
 			break;
 		default:
+			if( !BoxBeingEdited() || !g_bInGameTalking )
+			{
+				if( key == g_wKeyLeft2 || key == g_wKeyLeft3 )
+				{
+					Player_Control(g_self, g_wKeyLeft);
+					break;
+				}
+				if( key == g_wKeyRight2 || key == g_wKeyRight3 )
+				{
+					Player_Control(g_self, g_wKeyRight);
+					break;
+				}
+			}
+			
 			Menu_Chat_Char(key); /* This function encapsulates chat messages
 								 both in and out of the game */
 			break;
@@ -196,7 +211,7 @@ void OnKeyboardSpec(int key, int /*x*/, int /*y*/)
 			g_IsF1Down = 1;
 			break;
 		case GLUT_KEY_F5:
-			g_view_type = (VIEW_TYPE)((g_view_type + 1) % 3);
+			g_view_type = (VIEW_TYPE)((g_view_type + 1) % 4);
 			break;
 		default:
 			Player_Control(g_self, key);
