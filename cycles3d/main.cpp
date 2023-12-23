@@ -178,12 +178,12 @@ void OnKeyboard(unsigned char key, int /*x*/, int /*y*/)
 		default:
 			if( !BoxBeingEdited() || !g_bInGameTalking )
 			{
-				if( key == g_wKeyLeft2 || key == g_wKeyLeft3 )
+				if( key == g_wChrLeft2 || key == g_wChrLeft3 )
 				{
 					Player_Control(g_self, g_wKeyLeft);
 					break;
 				}
-				if( key == g_wKeyRight2 || key == g_wKeyRight3 )
+				if( key == g_wChrRight2 || key == g_wChrRight3 )
 				{
 					Player_Control(g_self, g_wKeyRight);
 					break;

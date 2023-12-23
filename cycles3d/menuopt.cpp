@@ -64,9 +64,9 @@ _CHECKBOX* pCheckBoxes[] = { &cbShowRadar, &cbRecognizers, &cbScores, &cbShadows
 //////////////////////////////////////////////
 // Edit boxes
 _EDITBOX ebName = { 5, 350, 120, "Your Name:", g_player[0].username, 16, RGB(192,192,192) };
-_EDITBOX ebGameName = { 5, 370, 120, "Game Title:", g_GameName, 32, RGB(192,192,192) };
-_EDITBOX ebMaxPlayers = { 5, 390, 120, "Max players:", g_MaxPlayers, 2, RGB(192,192,192) };
-_EDITBOX ebCPUPlayers = { 5, 410, 120, "CPU players:", g_CPUPlayers, 2, RGB(192,192,192) };
+_EDITBOX ebGameName = { 5, 370, 120, "Game Title:", g_GameName, MAX_GAME_NAME_LENGTH-1, RGB(192,192,192) };
+_EDITBOX ebMaxPlayers = { 5, 390, 120, "Max players:", g_MaxPlayers, 1, RGB(192,192,192) };
+_EDITBOX ebCPUPlayers = { 5, 410, 120, "CPU players:", g_CPUPlayers, 1, RGB(192,192,192) };
 static _EDITBOX* pEditBoxes[] = { &ebName, &ebGameName, &ebMaxPlayers, &ebCPUPlayers, 0 };
 
 //////////////////////////////////////////////

@@ -294,7 +294,7 @@ void ReadCFG()
 	if( szProp ) g_wKeyLeft = szProp;
 	szProp = GetProperty("TurnRightKey");
 	if( szProp ) g_wKeyRight = szProp;
-	if( g_wKeyLeft == g_wKeyRight )
+	if( g_wKeyLeft && g_wKeyLeft == g_wKeyRight )
 	{
 		g_wKeyLeft = GLUT_KEY_LEFT;
 		g_wKeyRight = GLUT_KEY_RIGHT;
